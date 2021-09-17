@@ -8,6 +8,11 @@
       </span>
     <% end %>
   </h3>
+  <hr>
+  <% if article.cover_image.attached? %>
+    <%= image_tag article.cover_image.variant(resize_to_limit: local_assigns.fetch(:cover_image_options, [200, 200])) %>
+  <% end %>
+  <hr>
   <%#= article.body.html_safe %>
   <%= simple_format article.body %>
 </div>
