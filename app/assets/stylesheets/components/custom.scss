@@ -1,0 +1,38 @@
+* {
+  margin: 0 auto;
+}
+
+body {
+  background-color: #fff;
+  color: #333;
+}
+
+body, p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 18px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+p {
+  padding: 5px;
+}
+
+a {
+  color:#D95E16;
+  padding:0 2px;
+  text-decoration:none;
+}
+
+a:hover {
+  background-color:#FF813C;
+  color:#FFFFFF;
+}
+
+.notice { color: green; }
+.alert  { color: red; }
