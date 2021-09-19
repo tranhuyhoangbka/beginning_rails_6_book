@@ -14,3 +14,6 @@ import "../components/my_component"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+import "trix"
+import "@rails/actiontext"

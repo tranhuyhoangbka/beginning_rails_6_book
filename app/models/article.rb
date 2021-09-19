@@ -7,6 +7,8 @@ class Article < ApplicationRecord
 
   has_one_attached :cover_image
 
+  has_rich_text :body
+
   attr_accessor :remove_cover_image
 
   scope :published, ->{where.not(published_at: nil)}

@@ -1,10 +1,10 @@
 class ArticlesController < ApplicationController
   before_action :authenticate, except: [:index, :show]
-  before_action :set_article, only: %i[show]
+  before_action :set_article, only: %i[show notify_friend]
 
   # GET /articles or /articles.json
   def index
-    @articles = Article.all
+    @articles = Article.includes(:user).with_rich_text_body.with_attached_cover_image.all
   end
 
   # GET /articles/1 or /articles/1.json
@@ -58,6 +58,11 @@ class ArticlesController < ApplicationController
       format.html { redirect_to articles_url, notice: "Article was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def notify_friend
+    NotifierMailer.email_friend(@article, params[:name], params[:email]).deliver
+    redirect_to @article, notice: 'Successfully sent a message to your friend'
   end
 
   private

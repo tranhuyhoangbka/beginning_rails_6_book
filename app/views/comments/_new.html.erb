@@ -1,5 +1,5 @@
 <%= form_with model: @article.comments.new, url: article_comments_path(@article),
-  local: false do |form| %>
+  local: false, html: {id: "comment_form"} do |form| %>
   <div class="field">
     <%= form.label :name %><br>
     <%= form.text_field :name %>

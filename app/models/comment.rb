@@ -11,6 +11,6 @@ class Comment < ApplicationRecord
   end
 
   def email_article_author
-    puts "we will notify the author in chapter 12"
+    NotifierMailer.comment_added(self).deliver_later
   end
 end
