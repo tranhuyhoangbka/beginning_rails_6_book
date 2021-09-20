@@ -3,8 +3,8 @@
     <%= link_to article.title, article %>
     <% if article.owned_by?(current_user) %>
       <span class="actions">
-        <%= link_to 'Edit', edit_article_path(article) %>
-        <%= link_to 'Delete', article, method: :delete, data: {confirm: 'Are you sure?'} %>
+        <%= link_to t('general.edit'), edit_article_path(article) %>
+        <%= link_to t('general.delete'), article, method: :delete, data: {confirm: t('general.are_you_sure')} %>
       </span>
     <% end %>
   </h3>

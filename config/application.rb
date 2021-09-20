@@ -18,5 +18,6 @@ module Hello
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    I18n.available_locales = [:en, :'pt-br', :vi]
   end
 end
