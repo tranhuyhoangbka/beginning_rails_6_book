@@ -17,6 +17,7 @@ class Article < ApplicationRecord
   scope :where_title, ->(term){where('articles.title LIKE ?', "%#{term}%")}
 
   after_save {cover_image.purge if remove_cover_image == '1'}
+  after_save :broadcast_new_article
 
   def long_title
     "#{title} - #{published_at}"
@@ -29,5 +30,20 @@ class Article < ApplicationRecord
   def owned_by?(owner)
     return false unless owner.is_a?(User)
     owner == user
+  end
+
+  private
+  def broadcast_new_article
+    if published? && saved_change_to_published_at?
+      ActionCable.server.broadcast(
+        "articles:new",
+        {
+          new_article: ArticlesController.render(
+            partial: 'articles/new_article_notification',
+            locals: { article: self }
+          )
+        }
+      )
+    end
   end
 end
